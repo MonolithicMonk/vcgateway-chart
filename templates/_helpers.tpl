@@ -60,3 +60,14 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+generate hosts if not overriden
+*/}}
+{{- define "vcgateway.host" -}}
+{{- if .Values.ingress.hosts -}}
+{{- (index .Values.ingress.hosts 0).host -}}
+{{- else }}
+{{- include "vcgateway.fullname" . }}.{{ .Release.Namespace | default "default" }}.svc.cluster.local
+{{- end -}}
+{{- end }}

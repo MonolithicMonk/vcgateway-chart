@@ -37,6 +37,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
+{{- if .Values.ingress.hosts -}}
     {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
@@ -58,4 +59,23 @@ spec:
               {{- end }}
           {{- end }}
     {{- end }}
+{{- else }}
+    - host: {{ include "vcgateway.host" . | quote }}
+      http:
+        paths:
+          - path: /
+            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+              {{- else }}
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+              {{- end }}
+{{- end -}}
 {{- end }}
