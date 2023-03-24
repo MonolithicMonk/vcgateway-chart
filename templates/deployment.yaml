@@ -33,8 +33,96 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: AUTHENTICATION_TYPE
+            value: 
+          - name: AUTHORIZATION_URL
+            value: 
+          - name: AUTH_METHOD
+            value: 
+          - name: BACKEND_SERVICE_NAME_PREFIX
+            value:
+          - name: CLIENT_ID
+            value:
+          # - name: CLIENT_SECRET
+          - name: CONFIG_PATH
+            value:
+          - name: CONSUL_HOST
+            value:
+          - name: CONSUL_PORT
+            value:
+          - name: CONSUL_SECURE
+            value:
+          - name: COOKIE_DOMAIN
+            value:
+          - name: COOKIE_ENABLED
+            value:
+          - name: COOKIE_HTTP_ONLY
+            value:
+          - name: COOKIE_MAX_AGE
+            value:
+          - name: COOKIE_NAME
+            value:
+          - name: COOKIE_SAME_SITE
+            value:
+          - name: COOKIE_SECURE
+            value:
+          - name: CORS_ENABLED
+            value:
+          - name: DEBUG_PORT
+            value: 
+          # - name: ECDH_PRIVATE_KEY
+          - name: ENDSESSION_REDIRECT_URI
+            value:
+          - name: ENDSESSION_URL
+            value:
+          - name: GRANT_TYPE
+            value:
+          - name: ISSUER
+            value:
+          - name: JAVA_OPTS
+            value: |
+              -Dmicronaut.environments=prod
+              -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:
+          - name: JWKS_URI
+            value:
+          - name: JWT_ATTRIBUTE_FOR_BACKEND_SERVICE_NAME
+            value:
+          - name: NAME_KEY
+            value:
+          - name: OPENID_RESPONSE_MODE
+            value:
+          - name: OPENID_RESPONSE_TYPE
+            value:
+          - name: REDIRECTION_ENABLED
+            value:
+          - name: REDIRECT_URI
+            value:
+          - name: ROLES_NAME
+            value:
+          - name: ROLES_SEPARATOR
+            value:
+          - name: SCOPES
+            value:
+          - name: SECURITY_REDIRECT_LOGOUT
+            value:
+          - name: SERVER_HOST
+            value:
+          - name: SERVER_NAME
+            value:
+          - name: SERVER_PORT
+            value:
+          - name: TOKEN_URL
+            value:
+          - name: USER_INFO
+            value:
+          - name: VCAUTHN_PRES_REQ_CONF_ID
+            value:
           ports:
-            - name: http
+            - name: bpa
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+            - name: debug
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
