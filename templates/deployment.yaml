@@ -42,9 +42,16 @@ spec:
             value: {{ .Values.configuration.authMethod }}
           - name: BACKEND_SERVICE_NAME_PREFIX
             value: {{ .Values.configuration.backendServiceNamePrefix }}
-          # - name: CLIENT_ID
-          #   value:
-          # - name: CLIENT_SECRET
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: client-id
+                name: {{ include "vcgateway.fullname" }}
+          - name: CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: client-secret
+                name: {{ include "vcgateway.fullname" }}
           - name: CONFIG_PATH
             value: {{ .Values.configuration.configPath }}
           - name: CONSUL_HOST
@@ -73,7 +80,11 @@ spec:
           - name: DEBUG_PORT
             value: {{ .Values.service.debug.targetPort | quote }}
           {{- end }}
-          # - name: ECDH_PRIVATE_KEY
+          - name: ECDH_PRIVATE_KEY
+            valueFrom:
+              secretKeyRef:
+                key: ecdh-private-key
+                name: {{ include "vcgateway.fullname" }}
           - name: ENDSESSION_REDIRECT_URI
             value: {{ .Values.configuration.endsessionRedirectUri }}
           - name: ENDSESSION_URL
