@@ -1,2 +1,9 @@
 # ignore local overide files for testing
 override.yaml
+
+# Ignore test Keys
+AUTH_SERVER
+AUTH_SERVER.bck
+
+# Ignore diode script
+diode-start
