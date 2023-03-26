@@ -35,91 +35,91 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: AUTHENTICATION_TYPE
-            value: 
+            value: {{ .Values.configuration.authenticationType }}
           - name: AUTHORIZATION_URL
-            value: 
+            value: {{ .Values.configuration.authorizationUrl }}
           - name: AUTH_METHOD
-            value: 
+            value: {{ .Values.configuration.authMethod }}
           - name: BACKEND_SERVICE_NAME_PREFIX
-            value:
-          - name: CLIENT_ID
-            value:
+            value: {{ .Values.configuration.backendServiceNamePrefix }}
+          # - name: CLIENT_ID
+          #   value:
           # - name: CLIENT_SECRET
           - name: CONFIG_PATH
-            value:
+            value: {{ .Values.configuration.configPath }}
           - name: CONSUL_HOST
-            value:
+            value: {{ .Values.configuration.consulHost }}
           - name: CONSUL_PORT
-            value:
+            value: {{ .Values.configuration.consulPort | quote }}
           - name: CONSUL_SECURE
-            value:
+            value: {{ .Values.configuration.consulSecure | quote }}
           - name: COOKIE_DOMAIN
-            value:
+            value: {{ .Values.configuration.cookieDomain }}
           - name: COOKIE_ENABLED
-            value:
+            value: {{ .Values.configuration.cookieEnabled | quote }}
           - name: COOKIE_HTTP_ONLY
-            value:
+            value: {{ .Values.configuration.cookieHttpOnly | quote }}
           - name: COOKIE_MAX_AGE
-            value:
+            value: {{ .Values.configuration.cookieMaxAge | quote }}
           - name: COOKIE_NAME
-            value:
+            value: {{ .Values.configuration.cookieName }}
           - name: COOKIE_SAME_SITE
-            value:
+            value: {{ .Values.configuration.cookieSameSite | quote }}
           - name: COOKIE_SECURE
-            value:
+            value: {{ .Values.configuration.cookieSecure | quote }}
           - name: CORS_ENABLED
-            value:
+            value: {{ .Values.configuration.corsEnabled | quote }} }}
           {{- if .Values.service.debug.targetPort }}
           - name: DEBUG_PORT
             value: {{ .Values.service.debug.targetPort | quote }}
           {{- end }}
           # - name: ECDH_PRIVATE_KEY
           - name: ENDSESSION_REDIRECT_URI
-            value:
+            value: {{ .Values.configuration.endsessionRedirectUri }}
           - name: ENDSESSION_URL
-            value:
+            value: {{ .Values.configuration.endsessionUrl }}
           - name: GRANT_TYPE
-            value:
+            value: {{ .Values.configuration.grantType }}
           - name: ISSUER
-            value:
+            value: {{ .Values.configuration.issuer }}
           - name: JAVA_OPTS
             value: |
               -Dmicronaut.environments=prod
               -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:
           - name: JWKS_URI
-            value:
+            value: {{ .Values.configuration.jwksUri }}
           - name: JWT_ATTRIBUTE_FOR_BACKEND_SERVICE_NAME
-            value:
+            value: {{ .Values.configuration.jwtAttributeForBackendServiceName }}
           - name: NAME_KEY
-            value:
+            value: {{ .Values.configuration.nameKey }}
           - name: OPENID_RESPONSE_MODE
-            value:
+            value: {{ .Values.configuration.openidResponseMode }}
           - name: OPENID_RESPONSE_TYPE
-            value:
+            value: {{ .Values.configuration.openidResponseType }}
           - name: REDIRECTION_ENABLED
-            value:
+            value: {{ .Values.configuration.redirectionEnabled | quote }}
           - name: REDIRECT_URI
-            value:
+            value: {{ .Values.configuration.redirectUri }}
           - name: ROLES_NAME
-            value:
+            value: {{ .Values.configuration.rolesName }}
           - name: ROLES_SEPARATOR
-            value:
+            value: {{ .Values.configuration.rolesSeparator }}
           - name: SCOPES
-            value:
+            value: {{ .Values.configuration.scopes }}
           - name: SECURITY_REDIRECT_LOGOUT
-            value:
+            value: {{ .Values.configuration.securityRedirectLogout }}
           - name: SERVER_HOST
-            value:
+            value: {{ .Values.configuration.serverHost }}
           - name: SERVER_NAME
-            value:
+            value: {{ .Values.configuration.serverName }}
           - name: SERVER_PORT
-            value:
+            value: {{ .Values.configuration.serverPort | quote }}
           - name: TOKEN_URL
-            value:
+            value: {{ .Values.configuration.tokenUrl }}
           - name: USER_INFO
-            value:
+            value: {{ .Values.configuration.userInfo }}
           - name: VCAUTHN_PRES_REQ_CONF_ID
-            value:
+            value: {{ .Values.configuration.vcauthnPresReqConfId }}
           ports:
             - name: bpa
               containerPort: {{ .Values.service.bpa.targetPort }}

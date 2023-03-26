@@ -92,7 +92,6 @@ configuration:
   authorizationUrl: ""
   authMethod: ""
   backendServiceNamePrefix: ""
-  clientId: ""
   clientSecret: ""
   configPath: ""
   consulHost: ""
