@@ -11,6 +11,7 @@ image:
   tag: ""
 
 imagePullSecrets: []
+  # - name: registry-pullsecrets
 nameOverride: ""
 fullnameOverride: ""
 
@@ -92,7 +93,9 @@ configuration:
   authorizationUrl: ""
   authMethod: ""
   backendServiceNamePrefix: ""
+  # Secret
   clientId: ""
+  # Secret
   clientSecret: ""
   configPath: ""
   consulHost: ""
@@ -106,7 +109,6 @@ configuration:
   cookieSameSite: ""
   cookieSecure: ""
   corsEnabled: ""
-  debugPort: ""
   ecdhPrivateKey: ""
   endsessionRedirectUri: ""
   endsessionUrl: ""
@@ -126,7 +128,9 @@ configuration:
   securityRedirectLogout: ""
   serverHost: ""
   serverName: ""
-  serverPort: ""
   tokenUrl: ""
   userInfo: ""
   vcauthnPresReqConfId: ""
+
+diode:
+  enabled: false
