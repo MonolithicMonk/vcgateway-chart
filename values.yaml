@@ -39,8 +39,12 @@ securityContext: {}
 service:
   type: ClusterIP
   clusterIP: 
-  targetPort:
-  port: 80
+  bpa:
+    targetPort:
+    port: 80
+  debug:
+    targetPort:
+    port: 80
 
 ingress:
   enabled: false
@@ -82,3 +86,47 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+configuration:
+  authenticationType: ""
+  authorizationUrl: ""
+  authMethod: ""
+  backendServiceNamePrefix: ""
+  clientId: ""
+  clientSecret: ""
+  configPath: ""
+  consulHost: ""
+  consulPort: ""
+  consulSecure: ""
+  cookieDomain: ""
+  cookieEnabled: ""
+  cookieHttpOnly: ""
+  cookieMaxAge: ""
+  cookieName: ""
+  cookieSameSite: ""
+  cookieSecure: ""
+  corsEnabled: ""
+  debugPort: ""
+  ecdhPrivateKey: ""
+  endsessionRedirectUri: ""
+  endsessionUrl: ""
+  grantType: ""
+  issuer: ""
+  javaOpts: ""
+  jwksUri: ""
+  jwtAttributeForBackendServiceName: ""
+  nameKey: ""
+  openidResponseMode: ""
+  openidResponseType: ""
+  redirectionEnabled: ""
+  redirectUri: ""
+  rolesName: ""
+  rolesSeparator: ""
+  scopes: ""
+  securityRedirectLogout: ""
+  serverHost: ""
+  serverName: ""
+  serverPort: ""
+  tokenUrl: ""
+  userInfo: ""
+  vcauthnPresReqConfId: ""

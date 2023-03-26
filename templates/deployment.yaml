@@ -69,8 +69,10 @@ spec:
             value:
           - name: CORS_ENABLED
             value:
+          {{- if .Values.service.debug.targetPort }}
           - name: DEBUG_PORT
-            value: 
+            value: {{ .Values.service.debug.targetPort | quote }}
+          {{- end }}
           # - name: ECDH_PRIVATE_KEY
           - name: ENDSESSION_REDIRECT_URI
             value:
@@ -120,10 +122,10 @@ spec:
             value:
           ports:
             - name: bpa
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.bpa.targetPort }}
               protocol: TCP
             - name: debug
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.debug.targetPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
