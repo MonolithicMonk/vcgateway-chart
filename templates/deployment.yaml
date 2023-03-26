@@ -96,7 +96,7 @@ spec:
           - name: JAVA_OPTS
             value: |
               -Dmicronaut.environments=prod
-              -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:
+              -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:{{ .Values.service.debug.targetPort | quote }}
           - name: JWKS_URI
             value: {{ .Values.configuration.jwksUri }}
           - name: JWT_ATTRIBUTE_FOR_BACKEND_SERVICE_NAME
@@ -124,7 +124,7 @@ spec:
           - name: SERVER_NAME
             value: {{ .Values.configuration.serverName }}
           - name: SERVER_PORT
-            value: {{ .Values.configuration.serverPort | quote }}
+            value: {{ .Values.service.bpa.targetPort | quote }}
           - name: TOKEN_URL
             value: {{ .Values.configuration.tokenUrl }}
           - name: USER_INFO
