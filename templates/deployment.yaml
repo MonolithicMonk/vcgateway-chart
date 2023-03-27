@@ -46,12 +46,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: client-id
-                name: {{ include "vcgateway.fullname" }}
+                name: {{ include "vcgateway.fullname" . }}
           - name: CLIENT_SECRET
             valueFrom:
               secretKeyRef:
                 key: client-secret
-                name: {{ include "vcgateway.fullname" }}
+                name: {{ include "vcgateway.fullname" . }}
           - name: CONFIG_PATH
             value: {{ .Values.configuration.configPath }}
           - name: CONSUL_HOST
@@ -75,16 +75,18 @@ spec:
           - name: COOKIE_SECURE
             value: {{ .Values.configuration.cookieSecure | quote }}
           - name: CORS_ENABLED
-            value: {{ .Values.configuration.corsEnabled | quote }} }}
+            value: {{ .Values.configuration.corsEnabled | quote }}
           {{- if .Values.service.debug.targetPort }}
           - name: DEBUG_PORT
             value: {{ .Values.service.debug.targetPort | quote }}
           {{- end }}
+          {{- if .Values.configuration.ecdhPrivateKey }}
           - name: ECDH_PRIVATE_KEY
             valueFrom:
               secretKeyRef:
                 key: ecdh-private-key
-                name: {{ include "vcgateway.fullname" }}
+                name: {{ include "vcgateway.fullname" . }}
+          {{- end }}
           - name: ENDSESSION_REDIRECT_URI
             value: {{ .Values.configuration.endsessionRedirectUri }}
           - name: ENDSESSION_URL
@@ -94,9 +96,9 @@ spec:
           - name: ISSUER
             value: {{ .Values.configuration.issuer }}
           - name: JAVA_OPTS
-            value: |
+            value: >
               -Dmicronaut.environments=prod
-              -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:{{ .Values.service.debug.targetPort | quote }}
+              -agentlib:jdwp=transport=dt_socket,server=y,suspend=n
           - name: JWKS_URI
             value: {{ .Values.configuration.jwksUri }}
           - name: JWT_ATTRIBUTE_FOR_BACKEND_SERVICE_NAME
@@ -114,7 +116,7 @@ spec:
           - name: ROLES_NAME
             value: {{ .Values.configuration.rolesName }}
           - name: ROLES_SEPARATOR
-            value: {{ .Values.configuration.rolesSeparator }}
+            value: {{ .Values.configuration.rolesSeparator | quote }}
           - name: SCOPES
             value: {{ .Values.configuration.scopes }}
           - name: SECURITY_REDIRECT_LOGOUT

@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "vcgateway.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service }}
+  type: {{ .Values.service.type }}
 {{- if .Values.service.clusterIP }}
   clusterIP: {{ .Values.service.clusterIP }}
 {{- end }}
@@ -14,11 +14,11 @@ spec:
       targetPort: {{ .Values.service.bpa.targetPort }}
       protocol: TCP
       name: bpa
-    {{- if .Values.service.debug.targetPort }}
+  {{- if .Values.service.debug.targetPort }}
     - port: {{ .Values.service.debug.port }}
       targetPort: {{ .Values.service.debug.targetPort }}
       protocol: TCP
       name: debug
-    {{- end }}
+  {{- end }}
   selector:
     {{- include "vcgateway.selectorLabels" . | nindent 4 }}
