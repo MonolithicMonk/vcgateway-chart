@@ -34,12 +34,16 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          - name: ACCESS_LOGGER_ENABLED
+            value: {{ .Values.configuration.accessLoggerEnabled | quote }}
           - name: AUTHENTICATION_TYPE
             value: {{ .Values.configuration.authenticationType }}
           - name: AUTHORIZATION_URL
             value: {{ .Values.configuration.authorizationUrl }}
           - name: AUTH_METHOD
             value: {{ .Values.configuration.authMethod }}
+          - name: AUTH_PORT
+            value: {{ .Values.configuration.authPort | quote }}
           - name: BACKEND_SERVICE_NAME_PREFIX
             value: {{ .Values.configuration.backendServiceNamePrefix }}
           - name: CLIENT_ID
@@ -56,8 +60,14 @@ spec:
             value: {{ .Values.configuration.configPath }}
           - name: CONSUL_HOST
             value: {{ .Values.configuration.consulHost }}
+          - name: CONSUL_IP_ADDR
+            value: {{ .Values.configuration.consulIpAddr | quote }}
+          - name: CONSUL_METADATA
+            value: {{ .Values.configuration.consulMetadata }}
           - name: CONSUL_PORT
             value: {{ .Values.configuration.consulPort | quote }}
+          - name: CONSUL_PREFER_IP_ADDRESS
+            value: {{ .Values.configuration.consulPreferIpAddress | quote }}
           - name: CONSUL_SECURE
             value: {{ .Values.configuration.consulSecure | quote }}
           - name: COOKIE_DOMAIN
@@ -93,6 +103,8 @@ spec:
             value: {{ .Values.configuration.endsessionUrl }}
           - name: GRANT_TYPE
             value: {{ .Values.configuration.grantType }}
+          - name: HEALTH_ENABLED
+            value: {{ .Values.configuration.healthEnabled | quote }}
           - name: ISSUER
             value: {{ .Values.configuration.issuer }}
           - name: JAVA_OPTS
@@ -142,12 +154,12 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /health/liveness
+              port: bpa
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /health/readiness
+              port: bpa
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

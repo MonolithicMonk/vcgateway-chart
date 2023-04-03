@@ -89,9 +89,13 @@ tolerations: []
 affinity: {}
 
 configuration:
+  accessLoggerEnabled:
   authenticationType: ""
   authorizationUrl: ""
   authMethod: ""
+  # Port were application / pod accepts traffic.
+  # Same as targetPort
+  authPort: 9115
   backendServiceNamePrefix: ""
   # Secret
   clientId: ""
@@ -99,7 +103,12 @@ configuration:
   clientSecret: ""
   configPath: ""
   consulHost: ""
+  consulIpAddr: ""
+  # Consul Metadata that holds the diode url
+  consulMetadata: ""
   consulPort: ""
+  # CONSUL_PREFER_IP_ADDRESS
+  consulPreferIpAddress: 
   consulSecure: ""
   cookieDomain: ""
   cookieEnabled: ""
@@ -113,6 +122,7 @@ configuration:
   endsessionRedirectUri: ""
   endsessionUrl: ""
   grantType: ""
+  healthEnabled: 
   issuer: ""
   javaOpts: ""
   jwksUri: ""
