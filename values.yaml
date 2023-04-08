@@ -181,7 +181,7 @@ diode:
 
   service:
     # Likely true if bind and false if publish
-    enabled: fale
+    enabled: false
     type: ClusterIP
     clusterIP:
       ip:  

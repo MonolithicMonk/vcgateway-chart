@@ -6,4 +6,4 @@ AUTH_SERVER
 AUTH_SERVER.bck
 
 # Ignore diode script
-diode-start
+scripts/diode-start
