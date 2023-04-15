@@ -2,8 +2,7 @@
 override.yaml
 
 # Ignore test Keys
-AUTH_SERVER
-AUTH_SERVER.bck
+keys/
 
 # Ignore diode script
-scripts/diode-start
+scripts/
